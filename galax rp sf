@@ -94,7 +94,7 @@ tabKick.Size = UDim2.new(1, 0, 1, 0)
 tabKick.BackgroundTransparency = 1
 tabKick.Visible = false
 
-mkL(tabKick, UDim2.new(0, 10, 0, 10), UDim2.new(1, -20, 0, 20), "Module de Kick Multiple", 12, Color3.fromRGB(255,255,255), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
+mkL(tabKick, UDim2.new(0, 10, 0, 10), UDim2.new(1, -20, 0, 20), "click sur quelqu'un pour le kick", 12, Color3.fromRGB(255,255,255), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
 
 -- Liste joueurs (dans l'onglet Kick)
 local plS = Instance.new("ScrollingFrame", tabKick)
