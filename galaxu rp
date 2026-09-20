@@ -109,7 +109,7 @@ plP.PaddingTop = UDim.new(0,3); plP.PaddingLeft = UDim.new(0,3); plP.PaddingRigh
 -- Cibles label
 local tgtLbl = mkL(tabKick, UDim2.new(0, 0, 0, 192), UDim2.new(1, -10, 0, 18), " Ciblés : Aucun", 10, Color3.fromRGB(140,140,140), Enum.Font.GothamMedium, Enum.TextXAlignment.Left)
 
--- Bouton KICK unique (couleur violette demandée)
+-- Bouton KICK unique (couleur violette)
 local kickBtn = mkB(tabKick, UDim2.new(0, 0, 0, 222), UDim2.new(1, -10, 0, 36), " KICK SÉLECTION", Color3.fromRGB(110, 50, 170), 11)
 
 -- Boutons de bascule d'onglets
@@ -242,8 +242,6 @@ local function deepScan()
         sfServer = false, sfKick = nil, sfBan = nil,
     }
 
-    print("══════ SF DEEP SCAN v30 ══════")
-
     local systems = {
         {name="Kohl's Admin",  prefixes={":",  "!"},  check=function() return ReplicatedStorage:FindFirstChild("KAEd") or LocalPlayer.PlayerGui:FindFirstChild("KAInterface") end},
         {name="HD Admin",      prefixes={"/",  ":"},  check=function() return ReplicatedStorage:FindFirstChild("HDAdminClient") or ReplicatedStorage:FindFirstChild("HDAdmin") end},
@@ -259,7 +257,7 @@ local function deepScan()
         local ok,r = pcall(sys.check)
         if ok and r then
             SR.adminSystem = sys.name; SR.chatPrefixes = sys.prefixes; SR.chatBased = true
-            print("[ADMIN] Détecté : "..sys.name); break
+            break
         end
     end
 
@@ -293,9 +291,8 @@ local function deepScan()
     local sfF = ReplicatedStorage:FindFirstChild("SF_AdminRemotes")
     if sfF then
         local kr = sfF:FindFirstChild("SF_Kick"); local br = sfF:FindFirstChild("SF_Ban")
-        if kr and br then SR.sfServer = true; SR.sfKick = kr; SR.sfBan = br; print("[SF]  Serveur SF détecté") end
+        if kr and br then SR.sfServer = true; SR.sfKick = kr; SR.sfBan = br end
     end
-    print("══════ SCAN TERMINÉ ══════")
 end
 
 -- ═══════════════════════════════════════════════════
@@ -304,8 +301,6 @@ end
 local function autoWhitelist()
     local me = LocalPlayer
     local success = 0
-
-    print("══════ AUTO WHITELIST ══════")
 
     pcall(function()
         local vals = {
@@ -375,7 +370,6 @@ local function autoWhitelist()
     end
 
     WHITELISTED = success > 0
-    print("══════ WHITELIST TERMINÉE — "..success.." succès ══════")
 end
 
 -- ═══════════════════════════════════════════════════
@@ -386,7 +380,6 @@ local function chat(cmd)
         local chs = TextChatService:FindFirstChild("TextChannels")
         if chs then local g = chs:FindFirstChild("RBXGeneral"); if g then g:SendAsync(cmd) end end
     end)
-    print("[CHAT] "..cmd)
 end
 
 -- ═══════════════════════════════════════════════════
@@ -405,8 +398,6 @@ local function execAction(action)
             local tName  = target.Name
             local tId    = target.UserId
             local success = 0
-
-            print("[KICK] ▶ "..tName.." | "..reason)
 
             if SR.sfServer then
                 if action == "kick" and SR.sfKick then
@@ -467,8 +458,6 @@ local function execAction(action)
 
     selectedPlayers = {}
     updateList()
-
-    print("[KICK] Terminé — "..totalSuccess.." succès")
 end
 
 -- ═══════════════════════════════════════════════════
@@ -514,20 +503,3 @@ task.delay(1.2, function()
         autoWhitelist()
     end)
 end)
-
-print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-print("[SF Hub] Prêt (Onglets Accueil / Kick)")
-print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-
-
-
-
-
-
-
-
-
-
-
-
-
