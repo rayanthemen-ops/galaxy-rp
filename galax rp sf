@@ -461,7 +461,7 @@ kickBtn.MouseButton1Click:Connect(function()
     kickBtn.Text = " KICK..."; kickBtn.BackgroundTransparency = 0.4
     execAction("kick")
     task.delay(0.3, function()
-        kickBtn.Text = " KICK SÉLECTION"; kickBtn.BackgroundTransparency = 0
+        kickBtn.Text = " kick"; kickBtn.BackgroundTransparency = 0
     end)
 end)
 
