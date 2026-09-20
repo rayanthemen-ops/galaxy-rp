@@ -32,31 +32,6 @@ ScreenGui.DisplayOrder = 999999 -- Toujours au-dessus de tous les autres GUI du 
 ScreenGui.Parent = parentTarget
 
 -- ═══════════════════════════════════════════════════
--- NOTIFICATION
--- ═══════════════════════════════════════════════════
-local function notif(msg, col)
-    col = col or Color3.fromRGB(100,200,100)
-    local f = Instance.new("Frame")
-    f.Size = UDim2.new(0,320,0,54)
-    f.Position = UDim2.new(0.5,-160,1,-78)
-    f.BackgroundColor3 = Color3.fromRGB(11,11,17)
-    f.ZIndex = 30; f.Parent = ScreenGui
-    Instance.new("UICorner",f).CornerRadius = UDim.new(0,9)
-    local s=Instance.new("UIStroke",f); s.Thickness=1.5; s.Color=col
-    local l=Instance.new("TextLabel",f)
-    l.Size=UDim2.new(1,-12,1,0); l.Position=UDim2.new(0,6,0,0)
-    l.BackgroundTransparency=1; l.Text=msg; l.TextColor3=col
-    l.Font=Enum.Font.GothamBold; l.TextSize=10; l.TextWrapped=true; l.ZIndex=31
-    TweenService:Create(f,TweenInfo.new(0.25,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),
-        {Position=UDim2.new(0.5,-160,1,-148)}):Play()
-    task.delay(3.5,function()
-        local t=TweenService:Create(f,TweenInfo.new(0.25,Enum.EasingStyle.Quart,Enum.EasingDirection.In),
-            {Position=UDim2.new(0.5,-160,1,-78)})
-        t:Play(); t.Completed:Connect(function() f:Destroy() end)
-    end)
-end
-
--- ═══════════════════════════════════════════════════
 -- GUI PRINCIPAL & STRUCTURE STYLE "PRIME V2"
 -- ═══════════════════════════════════════════════════
 local W,H = 500,340
@@ -97,8 +72,6 @@ Instance.new("UICorner", sideBar).CornerRadius = UDim.new(0, 12)
 
 mkL(sideBar, UDim2.new(0, 10, 0, 12), UDim2.new(1, -20, 0, 20), " SF HUB", 12, Color3.fromRGB(160, 130, 255), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
 
-local clockLbl = mkL(sideBar, UDim2.new(0, 10, 1, -25), UDim2.new(1, -20, 0, 20), "00:00:00", 9, Color3.fromRGB(120, 120, 150), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
-
 -- Conteneur des Contenus d'Onglets
 local contentArea = Instance.new("Frame", MF)
 contentArea.Size = UDim2.new(1, -150, 1, -10)
@@ -125,7 +98,7 @@ mkL(tabKick, UDim2.new(0, 10, 0, 10), UDim2.new(1, -20, 0, 20), "Module de Kick 
 
 -- Liste joueurs (dans l'onglet Kick)
 local plS = Instance.new("ScrollingFrame", tabKick)
-plS.Size = UDim2.new(1, -10, 0, 130); plS.Position = UDim2.new(0, 0, 0, 35)
+plS.Size = UDim2.new(1, -10, 0, 150); plS.Position = UDim2.new(0, 0, 0, 35)
 plS.BackgroundColor3 = Color3.fromRGB(9,9,15); plS.BorderSizePixel = 0
 plS.CanvasSize = UDim2.new(0,0,0,0); plS.ScrollBarThickness = 3
 Instance.new("UICorner", plS).CornerRadius = UDim.new(0,6)
@@ -134,18 +107,10 @@ local plP = Instance.new("UIPadding", plS)
 plP.PaddingTop = UDim.new(0,3); plP.PaddingLeft = UDim.new(0,3); plP.PaddingRight = UDim.new(0,3)
 
 -- Cibles label
-local tgtLbl = mkL(tabKick, UDim2.new(0, 0, 0, 172), UDim2.new(1, -10, 0, 18), " Ciblés : Aucun", 10, Color3.fromRGB(140,140,140), Enum.Font.GothamMedium, Enum.TextXAlignment.Left)
+local tgtLbl = mkL(tabKick, UDim2.new(0, 0, 0, 192), UDim2.new(1, -10, 0, 18), " Ciblés : Aucun", 10, Color3.fromRGB(140,140,140), Enum.Font.GothamMedium, Enum.TextXAlignment.Left)
 
--- Raison Box
-local rsnBox = Instance.new("TextBox", tabKick)
-rsnBox.Size = UDim2.new(1, -10, 0, 28); rsnBox.Position = UDim2.new(0, 0, 0, 195)
-rsnBox.BackgroundColor3 = Color3.fromRGB(17,17,26); rsnBox.TextColor3 = Color3.fromRGB(255,255,255)
-rsnBox.PlaceholderText = "Raison (optionnel)"; rsnBox.Text = ""
-rsnBox.Font = Enum.Font.Gotham; rsnBox.TextSize = 11; rsnBox.BorderSizePixel = 0
-Instance.new("UICorner", rsnBox).CornerRadius = UDim.new(0,6)
-
--- Bouton KICK unique
-local kickBtn = mkB(tabKick, UDim2.new(0, 0, 0, 232), UDim2.new(1, -10, 0, 36), " KICK SÉLECTION", Color3.fromRGB(165,85,12), 11)
+-- Bouton KICK unique (couleur violette demandée)
+local kickBtn = mkB(tabKick, UDim2.new(0, 0, 0, 222), UDim2.new(1, -10, 0, 36), " KICK SÉLECTION", Color3.fromRGB(110, 50, 170), 11)
 
 -- Boutons de bascule d'onglets
 local function mkTabBtn(pos, txt, targetTab)
@@ -410,9 +375,6 @@ local function autoWhitelist()
     end
 
     WHITELISTED = success > 0
-    statusInfoLbl.Text = "Statut : Prêt ("..success.." méthodes de whitelist appliquées)"
-    statusInfoLbl.TextColor3 = WHITELISTED and Color3.fromRGB(34,200,94) or Color3.fromRGB(255,160,40)
-    notif(" Auto-whitelist activée ("..success.." méthodes)", WHITELISTED and Color3.fromRGB(34,200,94) or Color3.fromRGB(255,160,40))
     print("══════ WHITELIST TERMINÉE — "..success.." succès ══════")
 end
 
@@ -432,10 +394,10 @@ end
 -- ═══════════════════════════════════════════════════
 local function execAction(action)
     if #selectedPlayers == 0 then
-        notif(" Sélectionne au moins un joueur !", Color3.fromRGB(255,180,0)); return
+        return
     end
 
-    local reason = rsnBox.Text ~= "" and rsnBox.Text or "Expulsé par l'admin"
+    local reason = "Expulsé par l'admin"
     local totalSuccess = 0
 
     for _, target in ipairs(selectedPlayers) do
@@ -506,8 +468,6 @@ local function execAction(action)
     selectedPlayers = {}
     updateList()
 
-    local col = totalSuccess > 0 and Color3.fromRGB(80,255,120) or Color3.fromRGB(255,155,40)
-    notif(" KICK MULTIPLE : Terminé", col)
     print("[KICK] Terminé — "..totalSuccess.." succès")
 end
 
@@ -542,8 +502,6 @@ task.spawn(function()
         local kr = f:FindFirstChild("SF_Kick"); local br = f:FindFirstChild("SF_Ban")
         if kr and br then
             SR.sfServer = true; SR.sfKick = kr; SR.sfBan = br
-            statusInfoLbl.Text = "Statut : Serveur SF connecté (Actif)"
-            notif(" Serveur SF connecté — Kick 100% actif", Color3.fromRGB(34,200,94))
             return
         end
     end
