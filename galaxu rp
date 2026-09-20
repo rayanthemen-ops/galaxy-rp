@@ -95,7 +95,7 @@ sideBar.Size = UDim2.new(0, 140, 1, 0)
 sideBar.BackgroundColor3 = Color3.fromRGB(14, 14, 22)
 Instance.new("UICorner", sideBar).CornerRadius = UDim.new(0, 12)
 
-mkL(sideBar, UDim2.new(0, 10, 0, 12), UDim2.new(1, -20, 0, 20), "⚡ SF HUB", 12, Color3.fromRGB(160, 130, 255), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
+mkL(sideBar, UDim2.new(0, 10, 0, 12), UDim2.new(1, -20, 0, 20), " SF HUB", 12, Color3.fromRGB(160, 130, 255), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
 
 local clockLbl = mkL(sideBar, UDim2.new(0, 10, 1, -25), UDim2.new(1, -20, 0, 20), "00:00:00", 9, Color3.fromRGB(120, 120, 150), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
 
@@ -113,7 +113,7 @@ tabBienvenue.Visible = true
 
 mkL(tabBienvenue, UDim2.new(0, 10, 0, 15), UDim2.new(1, -20, 0, 25), "Bienvenue sur SF Hub", 14, Color3.fromRGB(255,255,255), Enum.Font.GothamBold, Enum.TextXAlignment.Left)
 mkL(tabBienvenue, UDim2.new(0, 10, 0, 45), UDim2.new(1, -20, 0, 60), "Ce hub a était entièrement réalisé par l'équipe sf et 
-et horloge se script a etait penser et programmer pour galaxy rp sur tout les autre jeux les risque de ban sont énorme merci de l'utiliser pour galaxy rp .", 11, Color3.fromRGB(170,170,180), Enum.Font.Gotham, Enum.TextXAlignment.Left)
+et horloge se script a etait penser et programmer pour galaxy rp sur tout les autre jeux les risque de ban sont énorme merci de l'utiliser pour galaxy rp", 11, Color3.fromRGB(170,170,180), Enum.Font.Gotham, Enum.TextXAlignment.Left)
 
 local statusInfoLbl = mkL(tabBienvenue, UDim2.new(0, 10, 0, 120), UDim2.new(1, -20, 0, 40), "Statut : Chargement des systèmes...", 11, Color3.fromRGB(255,180,50), Enum.Font.GothamMedium, Enum.TextXAlignment.Left)
 
