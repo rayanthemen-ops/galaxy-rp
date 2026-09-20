@@ -110,7 +110,7 @@ plP.PaddingTop = UDim.new(0,3); plP.PaddingLeft = UDim.new(0,3); plP.PaddingRigh
 local tgtLbl = mkL(tabKick, UDim2.new(0, 0, 0, 192), UDim2.new(1, -10, 0, 18), " Ciblés : Aucun", 10, Color3.fromRGB(140,140,140), Enum.Font.GothamMedium, Enum.TextXAlignment.Left)
 
 -- Bouton KICK unique (couleur violette)
-local kickBtn = mkB(tabKick, UDim2.new(0, 0, 0, 222), UDim2.new(1, -10, 0, 36), " KICK SÉLECTION", Color3.fromRGB(110, 50, 170), 11)
+local kickBtn = mkB(tabKick, UDim2.new(0, 0, 0, 222), UDim2.new(1, -10, 0, 36), " kick ", Color3.fromRGB(110, 50, 170), 11)
 
 -- Boutons de bascule d'onglets
 local function mkTabBtn(pos, txt, targetTab)
